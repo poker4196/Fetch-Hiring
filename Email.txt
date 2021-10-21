@@ -1,0 +1,31 @@
+Dear Client, 
+
+Thank you for working with us recently on your campaign. We really enjoyed the creative challenges in this particular project!
+
+We’re currently in the process of inspection your data. Our team identified a few potential data quality issues. Here are some points we want to mention: 
+
+1. There is a missing of some data: customer and their orders, cpg data, and products data. This issues can be solved by having a better Data Design to make sure all data is structured well.
+
+2. There are some redundant records.  
+
+3. Some data are not in features' description. Most of features of rewardsReceiptItemList is not in data description.
+
+4. We use python and its library as Pandas, Numpy and visualization to find out missing data quality issues. Receipts and Brands data have missing percentage of features are about more than 35%.  
+
+
+
+We will talk with the data collection/management team to address these issues in details, as well as provide a data design to solve these issues.
+
+We will keep working with the dataset and improving our solution meanwhile we're looking forward to hearing your thoughts.
+
+Please let us know if you have any questions. Thank you so much for your collaboration. 
+
+
+
+
+
+Sincerely,
+
+Bao Pham
+
+Fetch Rewards Data Science Team

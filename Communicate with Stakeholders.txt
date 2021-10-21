@@ -1,0 +1,12 @@
+1. Data Design:
+
+_ If we add Customer_Orders table, we can solve irregular rewardsReceiptItemList features and make our data reasonalble.
+_ Same as with cpg and products data, we add them to normalize our data and make them structured in relational Database.
+
+2. Data Quality Issues:
+
+_ There are missing data in some feafures with a large percentage of missing data (above 35% to above 50%)
+_ This issues may come from initial inappropriate data design.
+_ We will apply EDA and analyze data to do Feature selection for those missing data.
+
+

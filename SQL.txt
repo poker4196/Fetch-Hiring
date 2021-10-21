@@ -1,0 +1,43 @@
+----1. What are the top 5 brands by receipts scanned for most recent month?
+
+--First I will create a view by 4 tables Receipts, Customer_Orders, Products, and Brand:
+
+CREATE VIEW VIEW1 AS (
+SELECT R.id ReceiptID, R.dateScanned TIME, B.CategoryCode Brand from Receipts R, Customer_Orders C, Products P, Brands B
+WHERE R.id = C.receiptId AND C.barCode = P.barCode AND P.brandCode = B.brandCode);
+
+--Then I retrieved top 5 brands by receipts scanned in requested time. I assigned values t1 at begin of the month and t2 at the end of month that we want to retrieve information.
+For Example, the beginning of the month is 1609632000000 and the end is 1609632896000:
+
+SELECT * FROM (
+SELECT Brand, COUNT(*) C FROM VIEW1 GROUP BY Brand WHERE TIME >= t1 AND TIME < t2 )
+ORDER BY C DESC NULLS LAST
+WHERE ROWNUM <= 5;
+
+
+----2. How does the ranking of the top 5 brands by receipts scanned for the recent month compare to the ranking for the previous month?
+
+_ To compare our record with top 5 brand last months or any month we want, just replace t1 and t2 with values that we calculate.
+
+
+---3. When considering average spend from receipts with 'rewardsReceiptStatus’ of ‘Accepted’ or ‘Rejected’, which is greater?
+
+
+SELECT (case when A.AVG(totalSpent) > B.AVG(totalSpent)  then 'ACCEPTED IS BIGGER'
+             when A.AVG(totalSpent) < B.AVG(totalSpent)  then 'REJECTED IS BIGGER'
+             else 'REJECTED = ACCEPTED'
+        end)
+FROM
+(SELECT AVG(totalSpent) FROM Receipts WHERE rewardReceiptStats = 'Accepted') AS A,
+(SELECT AVG(totalSpent) FROM Receipts WHERE rewardReceiptStats = 'Rejected') AS B;
+
+
+---4. When considering total number of items purchased from receipts with 'rewardsReceiptStatus’ of ‘Accepted’ or ‘Rejected’, which is greater?
+
+SELECT (case when A.SUM(totalSpent) > B.SUM(totalSpent)  then 'ACCEPTED IS BIGGER'
+             when A.SUM(totalSpent) < B.SUM(totalSpent)  then 'REJECTED IS BIGGER'
+             else 'REJECTED = ACCEPTED'
+        end)
+FROM
+(SELECT SUM(totalSpent) FROM Receipts WHERE rewardReceiptStats = 'Accepted') AS A,
+(SELECT SUM(totalSpent) FROM Receipts WHERE rewardReceiptStats = 'Rejected') AS B;
